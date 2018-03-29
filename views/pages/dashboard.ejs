@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <% include ../partials/header.ejs %>
+</head>
+
+<body>
+
+    <div class="header">
+        <div class="content">
+            <div class="logo">
+                <a href="/"><img src="./images/logo.png" /></a>
+            </div>
+        </div>
+    </div>
+
+    <div>
+        <% include ../partials/header.ejs %>
+    </div>
+
+    <div>
+        <% include ../partials/nav.ejs %>
+    </div>
+
+    <div class="main">
+        <div class="content">
+
+            <div class="primary">
+                <div class="banner"><img src="./images/banner.png" /></div>
+                <table>
+                    <tr>
+                        <th><h2>Checking and Savings Accounts</h2></th>
+                        <th class="balance">
+                            <label>Total Available Balance</label>
+                            <div>$27,043.05</div>
+                        </th>
+                    </tr>
+                    <% for(var i=0; i<5; i++) { %>
+                        <tr>
+                            <td>
+                                <h3>Cash Money</h3>
+                                <div>Last Transaction: 01/26 Amazon $100.00</div>
+                            </td>
+                            <td class="balance">
+                                <label>Available Balance</label>
+                                <div>$1,000.00</div>
+                            </td>
+                        </tr>
+                    <% } %>
+                </table>
+            </div>
+
+            <div class="sidebar">
+                <section class="border">
+                    <h3>NEED HELP?</h3>
+                    <div>Call us 24/7 at</div>
+                    <div>800-325-2424</div>
+                    <div><a href="javascript:void(0)">Resource Center</a></div>
+                    <div><a href="javascript:void(0)">Contact Us</a></div>
+                    <div><a href="javascript:void(0)">Find a Location</a></div>
+                </section>
+
+            </div>
+        </div>
+
+    </div>
+
+    <div>
+        <% include ../partials/footer.ejs %>
+    </div>
+
+</body>
+
+</html>
