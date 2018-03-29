@@ -166,6 +166,10 @@ nav ul {
     margin: 0 .5rem 0 .5rem;
 }
 
+.error {
+    color: red;
+}
+
 .login {
     background-image: url('../images/homeBackground.jpg');
     background-position: top right;
