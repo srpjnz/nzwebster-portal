@@ -8,63 +8,223 @@
 <body>
 
     <div class="header">
-        <div class="content">
+        <div class="container">
             <div class="logo">
-                <a href="/"><img src="./images/logo.png" /></a>
+                <a href="/">
+                    <img src="./images/logo.png" />
+                </a>
             </div>
         </div>
-    </div>
-
-    <div>
-        <% include ../partials/header.ejs %>
     </div>
 
     <div>
         <% include ../partials/nav.ejs %>
     </div>
 
-    <div class="main">
-        <div class="content">
-
-            <div class="primary">
-                <div class="banner"><img src="./images/banner.png" /></div>
+    <div class="dashboard container">
+        <div class="row">
+            <div class="col-9">
+                <div class="banner">
+                    <img src="./images/banner.png" data-toggle="modal" data-target="#exampleModal" />
+                </div>
                 <table>
                     <tr>
-                        <th><h2>Checking and Savings Accounts</h2></th>
+                        <th>
+                            <h2>Checking and Savings Accounts</h2>
+                        </th>
                         <th class="balance">
                             <label>Total Available Balance</label>
-                            <div>$27,043.05</div>
+                            <div>
+                                <%= '$' + formatCurrency(total) %>
+                            </div>
                         </th>
                     </tr>
-                    <% for(var i=0; i<5; i++) { %>
+                    <% bankAccounts.forEach(function(bankAccount) { %>
                         <tr>
                             <td>
-                                <h3>Cash Money</h3>
-                                <div>Last Transaction: 01/26 Amazon $100.00</div>
+                                <h3>
+                                    <a href="javascript:void(0)">
+                                        <%= bankAccount.description__c %>
+                                    </a>
+                                </h3>
+                                <div>Last Transaction:
+                                    <% if (bankAccount.amount__c > 0) { %>
+                                        <%= shortDate(bankAccount.createddate) %>
+                                            <%= bankAccount.transactiondescription %>
+                                                <%= '$' + formatCurrency(bankAccount.amount__c) %>
+                                                    <% } else { %>
+                                                        No recent transactions.
+                                                        <% } %>
+                                </div>
                             </td>
                             <td class="balance">
                                 <label>Available Balance</label>
-                                <div>$1,000.00</div>
+                                <div>
+                                    <%= '$' + formatCurrency(bankAccount.balance__c) %>
+                                </div>
                             </td>
                         </tr>
-                    <% } %>
+                        <% }) %>
                 </table>
             </div>
-
-            <div class="sidebar">
+            <div class="sidebar col-3">
                 <section class="border">
                     <h3>NEED HELP?</h3>
                     <div>Call us 24/7 at</div>
                     <div>800-325-2424</div>
-                    <div><a href="javascript:void(0)">Resource Center</a></div>
-                    <div><a href="javascript:void(0)">Contact Us</a></div>
-                    <div><a href="javascript:void(0)">Find a Location</a></div>
+                    <div>
+                        <a href="javascript:void(0)">Resource Center</a>
+                    </div>
+                    <div>
+                        <a href="javascript:void(0)">Contact Us</a>
+                    </div>
+                    <div>
+                        <a href="javascript:void(0)">Find a Location</a>
+                    </div>
                 </section>
-
+                <div>
+                    <% if (opportunity != null && opportunity.stagename != 'Closed') { %>
+                        <section>
+                            <h3>Your Credit Score</h3>
+                            <div class="score">
+                                <img src="/images/line-chart.png" />
+                                <%= creditScore %>
+                            </div>
+                            <div class="offer">
+                                <h3>Your Loan Options</h3>
+                                <div class="row">
+                                    <div class="col" style="max-width: 55px;">
+                                        <img src="/images/finger.png" />
+                                    </div>
+                                    <div class="col">
+                                        <p>Looking to pay off your
+                                            <strong>Cirrus Credit Card</strong> balance?</p>
+                                        <p>Get a quick credit decision.</p>
+                                    </div>
+                                </div>
+                                <div>
+                                    <button data-toggle="modal" data-target="#applyModal">Apply Now</button>
+                                </div>
+                            </div>
+                        </section>
+                        <% } %>
+                </div>
+                <div>
+                    <% if (opportunity.stagename == 'Closed') { %>
+                        <section>
+                            <h3>Your Credit Score</h3>
+                            <div class="score">
+                                <img src="/images/line-chart.png" />
+                                <%= creditScore %>
+                            </div>
+                            <div class="offer">
+                                <h3>Your Loan Status</h3>
+                                <div class="statusBar">
+                                    <div class="unfinished"></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col" style="max-width: 55px;">
+                                        <img src="/images/check.png" />
+                                    </div>
+                                    <div class="col">
+                                        <p>Congratulations your loan has been funded.</p>
+                                    </div>
+                                </div>
+                                <div>
+                                    <button>Setup Payments</button>
+                                </div>
+                            </div>
+                        </section>
+                        <% } %>
+                </div>
             </div>
         </div>
-
     </div>
+
+    <form id="newTransactionForm" action="/transaction" method="POST">
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Pay a Bill</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="bankAccountID">Paid From</label>
+                            <select class="form-control" id="bankAccountID" name="bankAccountID">
+                                <% bankAccounts.forEach(function(bankAccount) { %>
+                                    <option value="<%= bankAccount.sfid %>">
+                                        <%= bankAccount.description__c %>
+                                    </option>
+                                    <% }) %>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="description">Paid to</label>
+                            <select class="form-control" id="description" name="description">
+                                <option>Cirrus Credit Card</option>
+                                <option>Electron Auto Loans</option>
+                                <option>Equity Investment Services</option>
+                                <option>Hearth Mortgage</option>
+                                <option>Market Grocery</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="amount">Amount</label>
+                            <input type="text" class="form-control" id="amount" name="amount" value="500">
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" onclick="newTransaction()" data-dismiss="modal">Submit</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <form id="newApplicationForm" action="/application" method="POST">
+        <div class="modal fade" id="applyModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Loan Details</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="amount">Monthly Housing Payment</label>
+                            <input type="text" class="form-control" id="monthlyHousingPayment" name="monthlyHousingPayment" value="1800">
+                        </div>
+                        <div class="form-group">
+                            <label for="amount">Loan Amount</label>
+                            <input type="text" class="form-control" id="loanAmount" name="loanAmount" value="15000">
+                        </div>
+                        <div class="form-group">
+                            <label for="loanTerms">Loan Terms</label>
+                            <select type="text" class="form-control" id="loanTerms" name="loanTerms">
+                                <option>12 months</option>
+                                <option selected>24 months</option>
+                                <option>36 months</option>
+                                <option>48 months</option>
+                                <option>60 months</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" onclick="newApplication()" data-dismiss="modal">Apply</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
 
     <div>
         <% include ../partials/footer.ejs %>

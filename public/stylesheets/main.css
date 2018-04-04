@@ -1,102 +1,36 @@
+html {
+    height: 100%;
+}
 body {
-    margin: 0;
-    padding: 0;
     background: #fff;
     font-family: Arial, sans-serif;
-    font-size: 1em;
     font-weight: normal;
-    line-height: 1;
     color: #0a0a0a;
-}
-
-div {
-    display: block;
-    padding: 0;
-    margin: 0;
-}
-
-input {
-    width: 100%;
-    max-width: 400px;
-    border: 1px solid #ccc;
-    padding: 1em;
-    margin-top: .5em;
-    display: block;
+    position: relative;
+    height: 100%;
+    min-height: 780px;
 }
 
 button {
     font-size: 1em;
     color: white;
-    background: #0A57A4;
-    padding: .6em;
+    background: #0a57a4;
+    padding: 0.6em;
     border-radius: 5px;
 }
 
-table {
-    width: 100%;
-    border-collapse: collapse;
-    border-top: 1px #dadada solid;
-    margin-bottom: 2em;
+.btn-primary {
+    color: white;
+    background: #0a57a4;
 }
 
-table th {
-    border-bottom: 1px #dadada solid;
-    padding: .5em;
-    margin: 0;
-    border-spacing: 0;
-    border-collapse: separate;
-    text-align: left;
-}
-
-table td {
-    border-bottom: 1px #dadada solid;
-    padding: .8em;
-    margin: 0;
-    border-spacing: 0;
-    border-collapse: separate;
-    text-align: left;
-}
-
-table th h2 {
-    margin: 0;
-}
-
-table td h3 {
-    color: #1e5da0;
-    font-size: 1em;
-    padding: 0;
-    padding-bottom: .3em;
-    margin: 0;
-}
-
-table th.balance,
-table td.balance {
-    color: #069244;
-    font-size: 1.2em;
-    font-weight: bold;
-    text-align: right;
-}
-
-table th.balance {
-    font-size: 1.6em;
-}
-
-table th.balance label,
-table td.balance label {
-    font-size: .75rem;
-    font-weight: normal;
-    color: #777;
-    display: block;
-    padding-bottom: .3em;
-}
-
-table tr:nth-child(2n+3) td {
-    background-color: #f4f4f4;
+a {
+    color: #0a57a4;
 }
 
 .header {
-    padding: 15px 0;
-    height: 50px;
+    padding: 10px 0;
+    height: 65px;
     line-height: 50px;
     color: #fff;
     background-color: #277cc8;
@@ -104,17 +38,20 @@ table tr:nth-child(2n+3) td {
 }
 
 .header .logo {
-    height: 50px;
-    line-height: 50px;
+    height: 40px;
+    line-height: 40px;
 }
 
 .header .logo img {
     vertical-align: middle;
 }
 
+/* --------------------------------------------------- */
+/* Navigation */
+
 nav {
     background-color: transparent;
-    background-image: url('../images/bg-nav.png');
+    background-image: url("../images/bg-nav.png");
 }
 
 nav ul {
@@ -126,20 +63,20 @@ nav ul {
 }
 
 nav ul {
-    background-image: url('../images/bg-greynavdiv.png');
+    background-image: url("../images/bg-greynavdiv.png");
     background-repeat: repeat-y;
     background-position: top left;
-    padding-left: 20px;
+    padding-left: 20px !important;
 }
 
 .nav li {
     font-family: "Foro", Arial, sans-serif;
     font-weight: lighter;
-    color: #FFF;
+    color: #fff;
     font-size: 1em;
     display: block;
     float: left;
-    background-image: url('../images/bg-greynavdiv.png');
+    background-image: url("../images/bg-greynavdiv.png");
     background-repeat: repeat-y;
     background-position: top right;
     padding-right: 20px;
@@ -152,107 +89,223 @@ nav ul {
 }
 
 .nav li a {
-    color: #FFF;
+    color: #fff;
     text-decoration: none;
 }
 
-.home {
-    min-height: 500px;
+.login {
+    background-image: url("../images/homeBackground.jpg");
+    background-position: top right;
+    background-size: cover;
+    height: 300px;
+    margin-bottom: 1.1rem;
 }
 
-.home .col p {
-    font-size: .9rem;
-    line-height: 1.5em;
-    margin: 0 .5rem 0 .5rem;
+.login h2 {
+    font-size: 2rem;
+    margin: 0;
+    padding: 1rem 0 1rem 0;
+}
+
+.login form {
+    max-width: 350px;
+}
+
+.login .form-group {
+    margin-bottom: 0.7rem;
 }
 
 .error {
     color: red;
 }
 
-.login {
-    background-image: url('../images/homeBackground.jpg');
-    background-position: top right;
-    background-size: cover;
-    height: 300px;
-    margin-bottom: 2em;
+/* --------------------------------------------------- */
+/* Services */
+
+.services h1 {
+    text-align: center;
+    padding-bottom: 1.3rem;
+    font-size: 2.3rem;
 }
 
-.login h1 {
-    margin: 0;
-    padding: 1em 0 1em 0;
+.services h3 {
+    padding-top: 0.75rem;
+    font-size: 1.2rem;
+    font-weight: bold;
 }
 
-.main {
-    min-height: 530px;
-    width: 100%;
+.services p {
+    font-size: 0.8rem;
+    line-height: 1.5em;
+    margin: 0 0.5rem 0 0.5rem;
 }
 
-.banner img {
+/* --------------------------------------------------- */
+/* Dashboard */
+
+.dashboard {
+    padding-top: 1.5rem;
+}
+
+.dashboard .banner img {
     width: 100%;
     padding-bottom: 1em;
 }
 
-.primary {
-    padding-top: 1.2em;
-    display: table-cell;
-    min-width: 500px;
-    width: 100%;
-}
-
-.services h1 {
-    text-align: center;
-    padding-bottom: 1rem;
-}
-
-.formItem {
-    padding-bottom: 15px;
-}
-
-.sidebar {
-    display: table-cell;
-    padding-left: 1.75em;
-    min-width: 250px;
+.dashboard .sidebar {
     vertical-align: top;
 }
 
-.sidebar h3 {
-    font-size: 17px;
+.dashboard .sidebar h3 {
+    font-size: 1rem;
+    text-transform: uppercase;
+    font-weight: bold;
 }
 
-.sidebar section.border {
-    border-bottom: 1px #999 solid;
+.dashboard .sidebar p {
+    font-size: 0.9rem;
+}
+
+.dashboard .sidebar strong {
+    color: #0a57a4;
+}
+
+.dashboard .sidebar .statusBar {
+    height: 1.8rem;
+    border-radius: 3px;
+    background-color: #277cc8;
+    margin-bottom: 1rem;
+    position: relative;
+    padding: 0;
+}
+
+.dashboard .sidebar .statusBar .unfinished {
+    float: right;
+    height: 100%;
+    width: 2.5rem;
+    background-color: #777777;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+}
+
+.dashboard .sidebar .score {
+    font-size: 1.5rem;
+    color: #0a57a4;
+    font-weight: bold;
+    padding-bottom: 0.8rem;
+}
+
+.dashboard .sidebar img {
+    width: 45px;
+    padding-right: 5px;
+}
+
+.dashboard .sidebar section.border {
+    border: 0 !important;
+    border-bottom: 1px #999 solid !important;
     margin-bottom: 15px;
     padding-bottom: 15px;
 }
 
-.sidebar section div {
-    font-size: 14px;
-    padding-bottom: 3px;
+.dashboard .sidebar section div {
+    font-size: 0.9rem;
+    padding-bottom: 0.2rem;
 }
 
-.col {
-    width: 25%;
-    float: left;
-    text-align: center;
+.dashboard table {
+    width: 100%;
+    border-collapse: collapse;
+    border-top: 1px #dadada solid;
+    margin-bottom: 2em;
 }
+
+.dashboard table th {
+    border-bottom: 1px #dadada solid;
+    padding: 0.5em;
+    margin: 0;
+    border-spacing: 0;
+    border-collapse: separate;
+    text-align: left;
+}
+
+.dashboard table td {
+    border-bottom: 1px #dadada solid;
+    padding: 0.8em;
+    margin: 0;
+    border-spacing: 0;
+    border-collapse: separate;
+    text-align: left;
+}
+
+.dashboard table label {
+    padding: 0;
+    margin: 0;
+}
+
+.dashboard table th h2 {
+    font-size: 1.7rem;
+    margin: 0;
+}
+
+.dashboard table td {
+    font-size: 0.9rem;
+}
+
+.dashboard table td h3 {
+    color: #1e5da0;
+    font-size: 1.2rem;
+    padding: 0;
+    padding-bottom: 0.3rem;
+    margin: 0;
+}
+
+.dashboard table th.balance,
+.dashboard table td.balance {
+    color: #069244;
+    font-size: 1.2em;
+    font-weight: bold;
+    text-align: right;
+}
+
+.dashboard table th.balance {
+    font-size: 1.6em;
+}
+
+.dashboard table th.balance label,
+.dashboard table td.balance label {
+    font-size: 0.75rem;
+    font-weight: normal;
+    color: #777;
+    display: block;
+    padding-bottom: 0.3em;
+}
+
+.dashboard table tr:nth-child(2n + 3) td {
+    background-color: #f4f4f4;
+}
+
+/* --------------------------------------------------- */
+/* Footer */
 
 footer {
     height: 100px;
-    background-image: url('../images/bg-nav.png');
+    background-image: url("../images/bg-nav.png");
     margin-top: 3em;
     clear: both;
     text-align: center;
-    color: #FFF;
+    color: #fff;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
 }
 
 footer .copyright {
-    font-size: .7rem;
+    font-size: 0.7rem;
     line-height: 1.5rem;
     width: 75%;
     float: left;
     text-align: left;
-    padding-top: .8rem;
+    padding-top: 0.8rem;
 }
 
 footer .icons {
@@ -264,7 +317,7 @@ footer .icons {
 }
 
 footer .icon {
-    padding: 0 0 0 .6rem;
+    padding: 0 0 0 0.6rem;
 }
 
 .content {

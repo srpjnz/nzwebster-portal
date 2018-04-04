@@ -8,59 +8,74 @@
 <body>
 
     <div class="header">
-        <div class="content">
-            <div class="logo"><img src="./images/logo.png" /></div>
+        <div class="container">
+            <div class="logo">
+                <img src="./images/logo.png" />
+            </div>
         </div>
     </div>
 
-    <div class="main home">
-        <div class="login">
-            <div class="content">
-                <form action="/" method="POST">
-                    <h1>Login to your account</h1>                    
+    <div class="login">
+        <div class="container">
+            <h2>Login to your account</h2>
+            <form action="/" method="POST">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" class="form-control" id="username" name="username" value="<%= username %>" onchange="usernameChanged()">
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" class="form-control" id="password" name="password" value="<%= password %>">
+                </div>
+                <div>
+                    <button onclick="location.href='dashboard';">Login</button>
+                    <% if(username != null && usernameFound == false){ %>
+                        <span class="error">Login is invalid!</span>
+                        <% } %>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="services container">
+        <h1>Welcome to better banking!</h1>
+        <div class="container">
+            <div class="row">
+                <div class="col text-center">
                     <div>
-                        <div class="formItem">
-                            <label>User Name</label>
-                            <input type="text" name="username" value="<%= username %>" onchange="usernameChanged()" />
-                        </div>
-                        <div class="formItem">
-                            <label>Password</label>
-                            <input type="password" name="password" id="password" value="<%= password %>" />
-                        </div>
-                        <div>
-                            <button onclick="location.href='dashboard';">Login</button>
-                            <% if(username != null && usernameFound == false){ %>
-                                <span class="error">Login is invalid!</span>
-                            <% } %>                            
-                        </div>
+                        <img src="./images/checkingIcon.jpg" />
                     </div>
-                </form>
+                    <h3>Better checking &amp; savings</h3>
+                    <p>Get more for your money with Premier checking featuring free ATMs and higher interest on savings. No
+                        matter what your banking needs are, we've got an account that fits.</p>
+                </div>
+                <div class="col text-center">
+                    <div>
+                        <img src="./images/homeIcon.jpg" />
+                    </div>
+                    <h3>Smarter financing</h3>
+                    <p>Whether it’s buying a home, making renovations, or taking a well-deserved vacation, our financing options
+                        and credit cards can help you make it happen.</p>
+                </div>
+                <div class="col text-center">
+                    <div>
+                        <img src="./images/dollarIcon.jpg" />
+                    </div>
+                    <h3>Building your nest egg</h3>
+                    <p>Whether you’re planning for retirement or just want to make your money work harder, we have lots of ways
+                        to put your savings on the fast track.</p>
+                </div>
+                <div class="col text-center">
+                    <div>
+                        <img src="./images/phoneIcon.jpg" />
+                    </div>
+                    <h3>Fast and easy banking</h3>
+                    <p>With online and mobile banking, our extensive ATM network, and convenient bank locations, your day-to-day
+                        banking won't slow you down.</p>
+                </div>
             </div>
         </div>
-        <div class="services content">
-            <h1>Welcome to better banking!</h1>
-            <div class="col">
-                <div><img src="./images/checkingIcon.jpg" /></div>
-                <h3>Better checking and savings</h3>
-                <p>Get more for your money with Premier checking featuring free ATMs and higher interest on savings. No matter what your banking needs are, we've got an account that fits.</p>
-            </div>
-            <div class="col">
-                <div><img src="./images/homeIcon.jpg" /></div>
-                <h3>Smarter financing</h3>
-                <p>Whether it’s buying a home, making renovations, or taking a well-deserved vacation, our financing options and credit cards can help you make it happen.</p>
-            </div>
-            <div class="col">
-                <div><img src="./images/dollarIcon.jpg" /></div>
-                <h3>Building your nest egg</h3>
-                <p>Whether you’re planning for retirement or just want to make your money work harder, we have lots of ways to put your savings on the fast track.</p>
-            </div>
-            <div class="col">
-                <div><img src="./images/phoneIcon.jpg" /></div>
-                <h3>Fast and easy banking</h3>
-                <p>With online and mobile banking, our extensive ATM network, and convenient bank locations, your day-to-day banking won't slow you down.</p>
-            </div>                                    
-        </div>
-        <div style="clear:both"></div>
+    </div>
+    <div style="clear:both"></div>
     </div>
 
     <% include ../partials/footer.ejs %>
