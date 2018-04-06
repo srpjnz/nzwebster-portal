@@ -3,5 +3,10 @@
     "description": "Customer Portal for the Salesforce Webster Bank demo",
     "repository": "https://github.com/gabesumner/webster-portal",
     "keywords": ["node", "express", "heroku"],
-    "image": "heroku/nodejs"
+    "addons": ["heroku-postgresql", "herokuconnect"],
+    "image": "heroku/nodejs",
+    "env": {
+        "SALESFORCE_USERNAME": "",
+        "SALESFORCE_PASSWORD": ""
+    }
 }
