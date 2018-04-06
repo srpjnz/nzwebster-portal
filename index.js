@@ -6,8 +6,9 @@ const path = require("path");
 const url = require("url");
 const formatCurrency = require("format-currency");
 const PORT = process.env.PORT || 5000;
-const connectionString =
-    process.env.DATABASE_URL || "postgres://xixecnyvxikojr:74604844ba9a928bfd12c3d81d5e23df1cb4f92898b942e18dea2cd751b740b8@ec2-107-21-126-193.compute-1.amazonaws.com:5432/du5350tab150u";
+const connectionString = process.env.DATABASE_URL;
+const sfUsername = process.env.SALESFORCE_USERNAME;
+const sfPassword = process.env.SALESFORCE_Password;
 const config = getDBconfigFromString(connectionString);
 const pool = new pg.Pool(config);
 const jsforce = require("jsforce");
@@ -205,7 +206,7 @@ function newViewState() {
 }
 
 function createBankTransactionEvent(bankAccountID, description, amount) {
-    conn.login("gsumner@websterbank.demo", "salesforce1", function(err, res) {
+    conn.login(sfUsername, sfPassword, function(err, res) {
         if (err) {
             return console.error(err);
         }
@@ -226,7 +227,7 @@ function createBankTransactionEvent(bankAccountID, description, amount) {
 }
 
 function createLoanApplication(accountID, monthlyHousingPayment, loanAmount, loanTerms) {
-    conn.login("gsumner@websterbank.demo", "salesforce1", function(err, res) {
+    conn.login(sfUsername, sfPassword, function(err, res) {
         if (err) {
             return console.error(err);
         }
