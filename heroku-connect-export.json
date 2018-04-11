@@ -193,8 +193,8 @@
     }
   ],
   "connection": {
-    "app_name": "webster-portal",
-    "organization_id": "00D6A00000386SLUAY",
+    "app_name": "nzwebster-portal",
+    "organization_id": "00Df40000023mJu",
     "exported_at": "2018-04-06T03:47:34.299699+00:00",
     "features": {
       "poll_db_no_merge": true,
